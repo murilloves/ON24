@@ -67,12 +67,22 @@
 
 const inputs = require('./inputs');
 
+const testInputs = {
+  coordinatesArray: [
+    'F10',
+    'N3',
+    'F7',
+    'R90',
+    'F11'
+  ]
+}
+
 const coordinates = {
     '0': 0, // NORTH
-    '90': 0, // WEST
+    '90': 0, // EAST
     '180': 0, // SOUTH
-    '270': 0, // EAST
-    heading: 270, // that means EAST
+    '270': 0, // WEST
+    heading: 90, // that means EAST
 }
 
 const GEO_COORDINATES = [0, 90, 180, 270]
@@ -108,16 +118,16 @@ const whereIsItHeading = (newCoordinate) => {
         coordinates[0] += units
         return
     }
+    if (toWhere === 'E') {
+        coordinates[90] += units
+        return
+    }
     if (toWhere === 'S') {
         coordinates[180] += units
         return
     }
-    if (toWhere === 'E') {
-        coordinates[270] += units
-        return
-    }
     if (toWhere === 'W') {
-        coordinates[90] += units
+        coordinates[270] += units
         return
     }
 
